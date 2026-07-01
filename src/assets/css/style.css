@@ -702,3 +702,84 @@ h1,
     max-width: 230px;
   }
 }
+
+
+/* --- v5: compact support-flow cards on mobile --- */
+
+@media (max-width: 720px) {
+  .flow-grid {
+    gap: 10px;
+  }
+
+  .flow-card {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-areas:
+      "step title"
+      "icon text";
+    column-gap: 16px;
+    row-gap: 6px;
+    min-height: auto;
+    padding: 18px 18px;
+    align-items: start;
+  }
+
+  .flow-card .step {
+    grid-area: step;
+    margin: 0;
+    font-size: 1.55rem;
+    line-height: 1;
+  }
+
+  .flow-card .icon-box {
+    grid-area: icon;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    align-self: center;
+  }
+
+  .flow-card .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .flow-card h4 {
+    grid-area: title;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .flow-card p {
+    grid-area: text;
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+}
+
+@media (max-width: 420px) {
+  .flow-card {
+    grid-template-columns: 42px minmax(0, 1fr);
+    column-gap: 14px;
+    padding: 16px 16px;
+  }
+
+  .flow-card .step {
+    font-size: 1.42rem;
+  }
+
+  .flow-card .icon-box {
+    width: 34px;
+    height: 34px;
+  }
+
+  .flow-card h4 {
+    font-size: 0.96rem;
+  }
+
+  .flow-card p {
+    font-size: 0.84rem;
+  }
+}
