@@ -3,225 +3,350 @@ layout: layout.njk
 title: "Rozaki | 中小企業のIT基盤伴走支援"
 ---
 
-<section class="hero hero-grid">
-  <div class="hero-copy">
-    <p class="eyebrow">Freelance Infrastructure Engineer</p>
-    <h1>中小企業のIT基盤を整理し、安定して運用できる状態へ。</h1>
-    <p class="lead">
-      AWS、Linuxサーバー、ネットワーク、監視、バックアップ、セキュリティを横断して、
-      中小企業のWebアプリ・業務システムをインフラ面から支援します。
-      <br>
-      サーバー更改、AWS活用、CI/CD整備、監視・バックアップ改善、セキュリティ対策、運用改善まで、
-      現状整理から改善提案、実装・運用まで伴走します。
+{% macro icon(name) %}
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  {% if name == "mail" %}
+    <path d="M4 6h16v12H4z"></path>
+    <path d="m4 7 8 6 8-6"></path>
+  {% elif name == "user" %}
+    <path d="M20 21a8 8 0 0 0-16 0"></path>
+    <circle cx="12" cy="8" r="4"></circle>
+  {% elif name == "tools" %}
+    <path d="m14.7 6.3-5.4 5.4"></path>
+    <path d="M12.2 8.8 15 11.6"></path>
+    <path d="m3 21 6.1-6.1"></path>
+    <path d="M8.7 5.2a3.5 3.5 0 1 0 5.1 4.8l6-6"></path>
+    <path d="M12.8 18.5a3.5 3.5 0 1 0 4.8-5.1l-6 6"></path>
+  {% elif name == "badge" %}
+    <circle cx="12" cy="8" r="5"></circle>
+    <path d="m8.5 12.5-1.5 8 5-3 5 3-1.5-8"></path>
+  {% elif name == "certificate" %}
+    <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+    <path d="M8 7h8"></path>
+    <path d="M8 11h5"></path>
+    <path d="m14.5 16 1.5 1 2-3"></path>
+  {% elif name == "chart" %}
+    <path d="M4 19V5"></path>
+    <path d="M4 19h16"></path>
+    <path d="m7 15 4-4 3 3 5-7"></path>
+  {% elif name == "users" %}
+    <circle cx="9" cy="8" r="3"></circle>
+    <path d="M3 20a6 6 0 0 1 12 0"></path>
+    <path d="M16 11a3 3 0 0 0 0-6"></path>
+    <path d="M17 20a5 5 0 0 0-3-4.6"></path>
+  {% elif name == "heart" %}
+    <path d="M20.8 8.6c0 5.2-8.8 10.4-8.8 10.4S3.2 13.8 3.2 8.6A4.6 4.6 0 0 1 12 6.4a4.6 4.6 0 0 1 8.8 2.2z"></path>
+  {% elif name == "search" %}
+    <circle cx="11" cy="11" r="6"></circle>
+    <path d="m16 16 4 4"></path>
+  {% elif name == "file" %}
+    <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"></path>
+    <path d="M14 2v5h5"></path>
+    <path d="M9 13h6"></path>
+    <path d="M9 17h6"></path>
+  {% elif name == "cloud" %}
+    <path d="M17.5 19H8a5 5 0 1 1 .9-9.9 6 6 0 0 1 11.6 2.4A3.8 3.8 0 0 1 17.5 19z"></path>
+    <path d="M8 19h9.5"></path>
+  {% elif name == "monitor" %}
+    <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+    <path d="M8 20h8"></path>
+    <path d="M12 16v4"></path>
+  {% elif name == "github" %}
+    <path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-2c-2.9.6-3.5-1.2-3.5-1.2-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.1 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a9.9 9.9 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.4 4.8-4.8 5.1.4.3.8 1 .8 2v2.7c0 .3.2.6.8.5A10 10 0 0 0 12 2z"></path>
+  {% elif name == "rss" %}
+    <path d="M4 11a9 9 0 0 1 9 9"></path>
+    <path d="M4 4a16 16 0 0 1 16 16"></path>
+    <circle cx="5" cy="19" r="1"></circle>
+  {% endif %}
+</svg>
+{% endmacro %}
+
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="brand-mark"></span>
+    <span class="brand-name">Rozaki</span>
+    <span class="brand-copy">中小企業のIT基盤伴走支援</span>
+  </a>
+  <nav class="site-nav" aria-label="メインナビゲーション">
+    <a href="#top" class="is-active">ホーム</a>
+    <a href="#service">サービス</a>
+    <a href="#profile">プロフィール</a>
+    <a href="#work">実績・取り組み</a>
+    <a href="https://tech.royozaki.net/tech/jp/">ブログ</a>
+    <a class="nav-cta" href="#contact">{{ icon("mail") | safe }} お問い合わせ</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1><span class="headline-line">IT基盤の不安を整理し、</span><br>安定して運用できる状態へ。</h1>
+      <p class="lead">
+        AWS、Linuxサーバー、ネットワーク、監視、バックアップ、セキュリティを横断して、
+        中小企業のWebアプリ・業務システムをインフラ面から支援します。
+      </p>
+      <p class="lead lead-sub">
+        サーバー更改、AWS活用、CI/CD整備、監視・バックアップ改善、セキュリティ対策、
+        運用改善まで、現状整理から改善提案、実装・運用まで伴走します。
+      </p>
+
+      <div class="hero-meta">
+        <span>AWS</span>
+        <span>Linux</span>
+        <span>Network</span>
+        <span>Security</span>
+        <span>CI/CD</span>
+        <span>Monitoring</span>
+        <span>Backup</span>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">{{ icon("mail") | safe }} お問い合わせはこちら</a>
+        <a class="text-link" href="#service">サービス内容を見る <span>→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img src="/assets/images/profile-bright.png" alt="Rozakiのプロフィール写真" class="profile-image">
+    </div>
+  </div>
+</section>
+
+<section class="section service-flow" id="service">
+  <div class="service-summary">
+    <h2>中小企業のIT基盤伴走支援</h2>
+    <p>
+      現状の整理から、改善方針の設計、実装・運用、
+      継続的な改善まで。
     </p>
-    <div class="hero-meta">
-      <span>AWS</span>
-      <span>Linux</span>
-      <span>Network</span>
-      <span>Security</span>
-      <span>CI/CD</span>
-      <span>Monitoring</span>
-      <span>Backup</span>
+    <p>
+      IT基盤の課題に寄り添い、安定した運用と
+      事業の成長を支えます。
+    </p>
+    <div class="line-illustration" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
     </div>
   </div>
 
-  <div class="hero-profile">
-    <img src="/assets/images/profile.png" alt="Rozakiのプロフィール写真" class="profile-image">
-    <p class="profile-name">Rozaki | 中小企業のIT基盤伴走支援</p>
-    <p class="profile-title">IT Infrastructure / AWS / Security</p>
-  </div>
-</section>
-
-<section class="section">
-  <h2>プロフィール</h2>
-  <p>
-    Rozakiは、AWS・Linuxサーバー・ネットワーク・監視・バックアップ・セキュリティを中心に、
-    IT基盤まわりの設計・構築・運用改善を支援するフリーランスITインフラエンジニアです。
-  </p>
-  <p>
-    前職ではMISエンジニアとして、Webサービスのインフラ、サーバー、CI/CD、運用保守を担当し、
-    必要に応じてアプリケーション側の調査・修正にも関わってきました。
-  </p>
-  <p>
-    特定の技術だけを見るのではなく、Webアプリ・業務システムを支えるIT基盤全体を整理し、
-    現場で無理なく続けられる改善に落とし込むことを大切にしています。
-  </p>
-  <p>
-    現在は、中小企業のIT基盤・AWS活用・セキュリティ・運用改善を支援する活動を進めています。
-  </p>
-</section>
-
-<section class="section">
-  <h2>中小企業のIT基盤伴走支援</h2>
-  <p>
-    社内に専任のIT担当者がいない、または少人数でIT運用を担っている中小企業に向けて、
-    IT基盤の現状整理から改善、運用の見守りまでを支援します。
-  </p>
-  <p>
-    単発の設定作業だけでなく、サーバー、クラウド、ネットワーク、監視、バックアップ、セキュリティ、運用手順をつなげて見直し、
-    事業に合った形で安定運用できる状態を目指します。
-  </p>
-  <p>
-    Webアプリ・業務システムの運用保守では、インフラだけでなく、CI/CD、デプロイ、ログ調査、障害切り分けなども含めて、
-    必要に応じてアプリケーション側の調査にも踏み込みながら支援します。
-  </p>
-</section>
-
-<section class="section">
-  <h2>できること</h2>
-  <ul>
-    <li>AWS環境の設計・構築・運用改善</li>
-    <li>Linuxサーバー、ネットワーク、DNS、メールまわりの調査・改善</li>
-    <li>Webアプリ・業務システムのインフラ運用保守</li>
-    <li>CI/CD、デプロイまわりの整備・改善</li>
-    <li>CloudWatch等を使った監視・アラート設計</li>
-    <li>バックアップ、障害対応、運用手順の整備</li>
-    <li>AWS環境のセキュリティ設定確認</li>
-    <li>Prowler等を活用したAWS設定確認・改善提案</li>
-    <li>中小企業向けのIT基盤相談、改善提案</li>
-    <li>インフラ / クラウド研修、メンター業務</li>
-  </ul>
-</section>
-
-<section class="section">
-  <h2>支援できるテーマ</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>IT基盤の現状整理</h3>
-      <p>
-        AWS、サーバー、ネットワーク、監視、バックアップ、セキュリティ、運用手順を確認し、
-        現状の課題・リスク・優先順位を整理します。
-      </p>
-    </div>
-    <div class="card">
-      <h3>Webアプリ・業務システムの運用保守</h3>
-      <p>
-        Webアプリや業務システムを支えるインフラ、サーバー、CI/CD、監視、バックアップを見直し、
-        安定して運用できる状態を整えます。
-      </p>
-    </div>
-    <div class="card">
-      <h3>AWS活用・クラウド移行支援</h3>
-      <p>
-        既存サーバーの更改、AWS移行、クラウド活用について、
-        構成検討から設計・構築・運用改善まで支援します。
-      </p>
-    </div>
-    <div class="card">
-      <h3>セキュリティ・監視・バックアップ改善</h3>
-      <p>
-        AWS設定、権限管理、公開設定、ログ、監視、バックアップなどを確認し、
-        無理なく継続できるセキュリティ対策に落とし込みます。
-      </p>
-    </div>
-    <div class="card">
-      <h3>外部IT基盤相談役</h3>
-      <p>
-        月次の相談、運用レビュー、改善提案、ベンダー対応の相談など、
-        社内にIT基盤の相談相手がほしい企業を継続的に支援します。
-      </p>
+  <div class="flow-area">
+    <h3 class="flow-title">支援の進め方</h3>
+    <div class="flow-grid">
+      <article class="flow-card">
+        <span class="step">01</span>
+        <div class="icon-box">{{ icon("search") | safe }}</div>
+        <h4>現状整理・ヒアリング</h4>
+        <p>課題や要望を整理し、現状の構成や運用を把握します。</p>
+      </article>
+      <article class="flow-card">
+        <span class="step">02</span>
+        <div class="icon-box">{{ icon("file") | safe }}</div>
+        <h4>改善提案・設計</h4>
+        <p>課題に対する改善方針を整理し、最適な構成や方針を設計します。</p>
+      </article>
+      <article class="flow-card">
+        <span class="step">03</span>
+        <div class="icon-box">{{ icon("cloud") | safe }}</div>
+        <h4>実装・構築</h4>
+        <p>設計に基づき、AWSやサーバー環境の構築・設定を行います。</p>
+      </article>
+      <article class="flow-card">
+        <span class="step">04</span>
+        <div class="icon-box">{{ icon("monitor") | safe }}</div>
+        <h4>運用・改善</h4>
+        <p>監視や運用体制を整え、継続的に改善を進めます。</p>
+      </article>
+      <article class="flow-card">
+        <span class="step">05</span>
+        <div class="icon-box">{{ icon("users") | safe }}</div>
+        <h4>伴走・相談</h4>
+        <p>困ったときに相談できるパートナーとして、長く伴走します。</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <h2>強み</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>IT基盤を横断的に見られる</h3>
-      <p>
-        AWS、Linux、ネットワーク、監視、バックアップ、セキュリティを分断せず、
-        Webアプリ・業務システムを支えるIT基盤全体として整理します。
-      </p>
+<section class="section card-grid" id="profile">
+  <article class="feature-card">
+    <div class="card-heading">
+      <div class="card-icon">{{ icon("user") | safe }}</div>
+      <h2>1. プロフィール</h2>
     </div>
-    <div class="card">
-      <h3>現実的に改善する</h3>
-      <p>
-        理想論だけでなく、予算・人員・運用負荷を踏まえて、
-        続けられる改善案に落とし込みます。
-      </p>
+    <p>
+      Rozakiは、AWS・Linuxサーバー・ネットワーク・監視・バックアップ・セキュリティを中心に、
+      IT基盤まわりの設計・構築・運用改善を支援するフリーランスITインフラエンジニアです。
+    </p>
+    <p>
+      前職ではMISエンジニアとして、Webサービスのインフラ、サーバー、CI/CD、運用保守を担当し、
+      必要に応じてアプリケーション側の調査・修正にも関わってきました。
+    </p>
+  </article>
+
+  <article class="feature-card feature-card-wide">
+    <div class="card-heading">
+      <div class="card-icon">{{ icon("tools") | safe }}</div>
+      <h2>2. できること</h2>
     </div>
-    <div class="card">
-      <h3>設計から運用まで見られる</h3>
-      <p>
-        設計・構築だけでなく、監視、バックアップ、障害対応、運用手順、改善サイクルまで含めて支援します。
-      </p>
+    <ul class="bullet-list">
+      <li>AWS環境の設計・構築・運用改善</li>
+      <li>Linuxサーバー、ネットワーク、DNS、メールまわりの調査・改善</li>
+      <li>Webアプリ・業務システムのインフラ運用保守</li>
+      <li>CI/CD、デプロイまわりの整備・改善</li>
+      <li>CloudWatch等を使った監視・アラート設計</li>
+      <li>バックアップ、障害対応、運用手順の整備</li>
+      <li>AWS環境のセキュリティ設定確認</li>
+      <li>Prowler等を活用したAWS設定確認・改善提案</li>
+      <li>中小企業向けのIT基盤相談、改善提案</li>
+      <li>インフラ / クラウド研修、メンター業務</li>
+    </ul>
+  </article>
+
+  <article class="feature-card">
+    <div class="card-heading">
+      <div class="card-icon">{{ icon("badge") | safe }}</div>
+      <h2>3. 強み</h2>
     </div>
-    <div class="card">
-      <h3>説明まで支援する</h3>
+    <div class="strength-list">
+      <section>
+        <h3>IT基盤を横断的に見られる</h3>
+        <p>AWS、Linux、ネットワーク、監視、バックアップ、セキュリティを分断せず、Webアプリ・業務システムを支えるIT基盤全体として整理します。</p>
+      </section>
+      <section>
+        <h3>現実的に改善する</h3>
+        <p>理想論だけでなく、予算・人員・運用負荷を踏まえて、続けられる改善案に落とし込みます。</p>
+      </section>
+      <section>
+        <h3>説明まで支援する</h3>
+        <p>技術者だけでなく、経営層や非エンジニアにも伝わる形で、課題や改善方針を整理します。</p>
+      </section>
+    </div>
+  </article>
+
+  <article class="feature-card">
+    <div class="card-heading">
+      <div class="card-icon">{{ icon("certificate") | safe }}</div>
+      <h2>4. 保有資格</h2>
+    </div>
+    <ul class="bullet-list">
+      <li>AWS Certified Solutions Architect - Professional</li>
+      <li>情報処理安全確保支援士</li>
+      <li>応用情報技術者</li>
+      <li>TOEIC 850</li>
+    </ul>
+  </article>
+
+  <article class="feature-card" id="work">
+    <div class="card-heading">
+      <div class="card-icon">{{ icon("chart") | safe }}</div>
+      <h2>5. 最近の取り組み</h2>
+    </div>
+    <ul class="bullet-list">
+      <li>AWS環境の運用改善・セキュリティ改善</li>
+      <li>Prowler等を活用したAWS設定確認サービスの検討</li>
+      <li>中小企業向けIT基盤現状確認サービスの準備</li>
+      <li>Webアプリ・業務システムの運用保守支援に向けたサービス整理</li>
+      <li>Terraform AWS Providerへのコントリビュート</li>
+      <li>技術ブログでのインフラ・セキュリティ情報発信</li>
+    </ul>
+  </article>
+</section>
+
+<section class="section lower-grid">
+  <article class="feature-card support-card">
+    <div class="card-heading">
+      <div class="card-icon">{{ icon("users") | safe }}</div>
+      <h2>6. このような方を支援します</h2>
+    </div>
+    <ul class="bullet-list">
+      <li>社内に専任のIT担当者がいない中小企業</li>
+      <li>一人情シス・少人数情シスで、外部の相談相手がほしい会社</li>
+      <li>Webアプリや業務システムのインフラ運用に不安がある会社</li>
+      <li>AWSやサーバーの管理が属人化している会社</li>
+      <li>サーバー更改やクラウド移行を検討している会社</li>
+      <li>監視、バックアップ、セキュリティ設定に不安がある会社</li>
+      <li>障害対応や運用手順を整理したい会社</li>
+      <li>ベンダー任せになっているIT基盤を見直したい会社</li>
+    </ul>
+  </article>
+
+  <article class="feature-card value-card">
+    <div class="card-heading">
+      <div class="card-icon">{{ icon("heart") | safe }}</div>
+      <h2>7. 大切にしていること</h2>
+    </div>
+    <ul class="check-list">
+      <li>IT基盤は、普段は目立ちませんが、事業を支える土台です。</li>
+      <li>サーバー、ネットワーク、クラウド、監視、バックアップ、セキュリティは、それぞれが別々に存在しているのではなく、つながっています。</li>
+      <li>部分的な対応だけでなく、全体のつながりを見ながら、お客様が納得して判断できるように課題や改善方針を整理します。</li>
+      <li>技術的に正しいだけでなく、現場で運用できること、経営判断に使えること、担当者が安心して続けられることを重視しています。</li>
+      <li>目の前の課題だけでなく、その背景にある目的や運用上の制約を踏まえ、必要な品質や優先順位を一緒に整理します。顧客に近い立場でIT基盤全体に向き合い、オーナーシップを持って改善に伴走します。</li>
+    </ul>
+  </article>
+
+  <article class="feature-card contact-mini" id="contact">
+    <div class="card-heading">
+      <div class="card-icon">{{ icon("mail") | safe }}</div>
+      <h2>8. お問い合わせ</h2>
+    </div>
+    <p>
+      AWS、サーバー、ネットワーク、監視、バックアップ、セキュリティ、
+      Webアプリ・業務システムのインフラ運用まわりでお困りの方は、お気軽にご相談ください。
+    </p>
+    <a class="btn btn-primary" href="mailto:r.ozaki0318@gmail.com">{{ icon("mail") | safe }} お問い合わせはこちら</a>
+    <p class="note">無理な営業は行いませんのでご安心ください。</p>
+  </article>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="brand-mark"></span>
+        <span class="brand-name">Rozaki</span>
+      </div>
+      <p>中小企業のIT基盤伴走支援</p>
       <p>
-        技術者だけでなく、経営層や非エンジニアにも伝わる形で、
-        課題や改善方針を整理します。
+        IT基盤の設計・構築・運用改善を通じて、
+        中小企業のWebアプリ・業務システムの安定運用と事業成長を支援します。
       </p>
+      <div class="social-icons">
+        <a href="https://github.com/OzakiRoy" aria-label="GitHub">{{ icon("github") | safe }}</a>
+        <a href="https://tech.royozaki.net/tech/jp/" aria-label="Blog RSS">{{ icon("rss") | safe }}</a>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3>サイトマップ</h3>
+      <a href="#top">ホーム</a>
+      <a href="#service">サービス</a>
+      <a href="#profile">プロフィール</a>
+      <a href="#work">実績・取り組み</a>
+      <a href="https://tech.royozaki.net/tech/jp/">ブログ</a>
+    </div>
+
+    <div class="footer-column">
+      <h3>サービス</h3>
+      <a href="#service">AWS設計・構築・運用改善</a>
+      <a href="#service">サーバー・ネットワーク改善</a>
+      <a href="#service">監視・バックアップ整備</a>
+      <a href="#service">セキュリティ対策</a>
+      <a href="#service">IT基盤相談・改善提案</a>
+    </div>
+
+    <div class="footer-column">
+      <h3>サポート</h3>
+      <a href="#contact">お問い合わせ</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">免責事項</a>
+    </div>
+
+    <div class="footer-cta">
+      <h3>お気軽にご相談ください</h3>
+      <p>IT基盤の不安やお悩みを整理し、最適な改善の方向性をご提案します。</p>
+      <a class="btn btn-dark" href="mailto:r.ozaki0318@gmail.com">{{ icon("mail") | safe }} お問い合わせはこちら</a>
     </div>
   </div>
-</section>
 
-<section class="section">
-  <h2>このような方を支援します</h2>
-  <ul>
-    <li>社内に専任のIT担当者がいない中小企業</li>
-    <li>一人情シス・少人数情シスで、外部の相談相手がほしい会社</li>
-    <li>Webアプリや業務システムのインフラ運用に不安がある会社</li>
-    <li>AWSやサーバーの管理が属人化している会社</li>
-    <li>サーバー更改やクラウド移行を検討している会社</li>
-    <li>監視、バックアップ、セキュリティ設定に不安がある会社</li>
-    <li>障害対応や運用手順を整理したい会社</li>
-    <li>ベンダー任せになっているIT基盤を見直したい会社</li>
-  </ul>
-</section>
-
-<section class="section">
-  <h2>保有資格</h2>
-  <ul>
-    <li>AWS Certified Solutions Architect - Professional</li>
-    <li>情報処理安全確保支援士</li>
-    <li>応用情報技術者</li>
-    <li>TOEIC 850</li>
-  </ul>
-</section>
-
-<section class="section">
-  <h2>最近の取り組み</h2>
-  <ul>
-    <li>AWS環境の運用改善・セキュリティ改善</li>
-    <li>Prowler等を活用したAWS設定確認サービスの検討</li>
-    <li>中小企業向けIT基盤現状確認サービスの準備</li>
-    <li>Webアプリ・業務システムの運用保守支援に向けたサービス整理</li>
-    <li>Terraform AWS Providerへのコントリビュート</li>
-    <li>技術ブログでのインフラ・セキュリティ情報発信</li>
-  </ul>
-</section>
-
-<section class="section">
-  <h2>大切にしていること</h2>
-  <p>
-    IT基盤は、普段は目立ちませんが、事業を支える土台です。
-    サーバー、ネットワーク、クラウド、監視、バックアップ、セキュリティは、
-    それぞれが別々に存在しているのではなく、つながっています。
-  </p>
-  <p>
-    そのため、部分的な対応だけでなく、全体のつながりを見ながら、
-    お客様が納得して判断できるように課題や改善方針を整理します。
-  </p>
-  <p>
-    技術的に正しいだけでなく、現場で運用できること、
-    経営判断に使えること、担当者が安心して続けられることを重視しています。
-  </p>
-  <p>
-    目の前の課題だけでなく、その背景にある目的や運用上の制約を踏まえ、
-    必要な品質や優先順位を一緒に整理します。
-    顧客に近い立場でIT基盤全体に向き合い、オーナーシップを持って改善に伴走します。
-  </p>
-</section>
-
-<section class="section contact">
-  <h2>お問い合わせ</h2>
-  <p>
-    AWS、サーバー、ネットワーク、監視、バックアップ、セキュリティ、
-    Webアプリ・業務システムのインフラ運用まわりでお困りの方は、お気軽にご相談ください。
-  </p>
-  <p>
-    中小企業向けに、IT基盤の現状整理、改善提案、実装・運用支援を行っています。
-  </p>
-</section>
+  <div class="footer-bottom">
+    <p>© 2026 Rozaki. All Rights Reserved.</p>
+  </div>
+</footer>
