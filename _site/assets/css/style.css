@@ -783,3 +783,34 @@ h1,
     font-size: 0.84rem;
   }
 }
+
+/* 実績・外部プロフィールリンク */
+.text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: var(--accent);
+  font-size: 0.92rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.text-button span {
+  transition: transform 180ms ease;
+}
+
+.text-button:hover span {
+  transform: translateX(3px);
+}
+
+.results-card .text-button {
+  padding-top: 4px;
+}
+
+@media (max-width: 720px) {
+  .text-button {
+    margin-top: 18px;
+    font-size: 0.9rem;
+  }
+}
